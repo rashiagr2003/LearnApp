@@ -7,6 +7,7 @@ class LessonCard extends StatefulWidget {
   final String style;
   final String heading;
   final int minute;
+  final bool isLocked;
 
   final String image;
   const LessonCard(
@@ -15,7 +16,8 @@ class LessonCard extends StatefulWidget {
       required this.style,
       required this.heading,
       required this.image,
-      required this.minute});
+      required this.minute,
+      required this.isLocked});
 
   @override
   State<LessonCard> createState() => _LessonCardState();
@@ -27,7 +29,7 @@ class _LessonCardState extends State<LessonCard> {
     BuildContext context,
   ) {
     return Container(
-      margin: const EdgeInsets.only(right: 16, bottom: 18),
+      margin: const EdgeInsets.only(right: 16, bottom: 10),
       width: 242,
       height: 200,
       decoration: BoxDecoration(
@@ -75,11 +77,17 @@ class _LessonCardState extends State<LessonCard> {
                       fontSize: 12,
                       color: const Color(0xff6D747A)),
                 ),
-                const Icon(
-                  FontAwesomeIcons.lock,
-                  size: 15,
-                  color: Color(0xff6D747A),
-                )
+                widget.isLocked == true
+                    ? const Icon(
+                        FontAwesomeIcons.lock,
+                        size: 15,
+                        color: Color(0xff6D747A),
+                      )
+                    : const Icon(
+                        FontAwesomeIcons.check,
+                        size: 15,
+                        color: Colors.green,
+                      ),
               ],
             ),
           ),
